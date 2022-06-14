@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Modal, Table } from 'react-bootstrap'
 import apiDeputados from '../../services/apiDeputados'
-import { BsYoutube } from 'react-icons/bs'
-import { FiSearch } from 'react-icons/fi'
+import { BsYoutube, BsFillFileEarmarkTextFill, BsInfoSquareFill } from 'react-icons/bs'
 import { Link } from '@chakra-ui/react'
+import ModalPage from '../../components/ModalPage'
 
 
 const Eventos = () => {
@@ -32,41 +32,31 @@ const Eventos = () => {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Detalhes</th>
-            <th>Data</th>
-            <th>Tipo</th>
-            <th>Local</th>
-            <th>Situação</th>
-            <th>Descrição</th>
-            <th>Registro</th>
+            <th >Detalhes</th>
+            <th >Data</th>
+            <th >Tipo</th>
+            <th >Local</th>
+            <th >Situação</th>
+            <th >Descrição</th>
+            <th >Registro</th>
           </tr>
         </thead>
         <tbody>
           {eventos.map(item => (
             <tr key={item.id}>
-              <td><Link href={'/eventos/' + item.id}><FiSearch /></Link></td>
-              <td>{getDateBR(item.dataHoraInicio)}</td>
-              <td>{item.descricaoTipo}</td>
-              <td>{item.localCamara.nome}</td>
-              <td>{item.situacao}</td>
-              <td><Button variant="outline-primary" onClick={() => { setLgShow(true); setEvento(item) }}>Ver Descrição</Button> </td>
-              <td><Link className='btn btn-outline-danger' href={item.urlRegistro}><BsYoutube /> Youtube</Link></td>
+              <td ><Link className='btn btn-outline-dark' href={'/eventos/' + item.id}><BsInfoSquareFill /> Info</Link></td>
+              <td >{getDateBR(item.dataHoraInicio)}</td>
+              <td >{item.descricaoTipo}</td>
+              <td >{item.localCamara.nome}</td>
+              <td >{item.situacao}</td>
+              <td ><Button variant="outline-primary" onClick={() => { setLgShow(true); setEvento(item) }}><BsFillFileEarmarkTextFill /> Ver Descrição</Button> </td>
+              <td ><Link className='btn btn-outline-danger' href={item.urlRegistro}><BsYoutube /> Youtube</Link></td>
             </tr>
           ))}
         </tbody>
       </Table>
 
-      <Modal size="lg" show={lgshow} onHide={(handleClose)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Descrição</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>{evento?.descricao}</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Fechar
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <ModalPage show={lgshow} handleClose={(handleClose)} descricao={evento?.descricao}></ModalPage>
     </div>
   )
 }

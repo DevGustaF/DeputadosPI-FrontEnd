@@ -1,6 +1,5 @@
-import { Box } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import { Card, Col, ListGroup, Row } from 'react-bootstrap'
+import { Card, Col, Row, Tabs, Tab } from 'react-bootstrap'
 import { Link, useParams } from 'react-router-dom'
 import apiDeputados from '../../services/apiDeputados'
 
@@ -20,45 +19,51 @@ const DeputadosDetalhes = () => {
         })
     }, [])
 
-  return (
-    <div>
-        {!deputado.id && <h3>Carregando... Aguarde!</h3>}
-        
-        {deputado.id &&
-            <div>
+    return (
+        <div>
+            {!deputado.id && <h3>Carregando... Aguarde!</h3>}
 
-                <Row>
-                    <Col md={4}>
-                    <Box bg='black' w='90.5%' p={4} color='black'>
-                        <Card>
-                        <Card.Header><h3 style={{ textAlign: 'center' }}><strong>{deputado.ultimoStatus.nome}</strong></h3></Card.Header>
-                            <Card.Img variant="top" src={deputado.ultimoStatus.urlFoto} />
-                        </Card>
-                    </Box>
-                    </Col>
-                    <Col md={8}>
-                    <Card>
-                        <Card.Header><h4 style={{ textAlign: 'center' }}><strong>Informações: </strong></h4></Card.Header>
-                        <Card.Body>
-                        <ListGroup variant="flush">
-                        <ListGroup.Item><p><strong>Nome Completo: </strong>{deputado.nomeCivil}</p></ListGroup.Item>
-                            <ListGroup.Item><p><strong>Data de Nascimento: </strong>{getDateBR(deputado.dataNascimento)}</p></ListGroup.Item>
-                            <ListGroup.Item><p><strong>Local de Nascimento: </strong>{deputado.ufNascimento}</p></ListGroup.Item>
-                            <ListGroup.Item><p><strong>Escolaridade: </strong>{deputado.escolaridade}</p></ListGroup.Item>
-                            <ListGroup.Item><p><strong>Condição Eleitoral: </strong>{deputado.ultimoStatus.condicaoEleitoral}</p></ListGroup.Item>
-                            <ListGroup.Item><p><strong>Email: </strong>{deputado.ultimoStatus.email}</p></ListGroup.Item>
-                            <ListGroup.Item><p><strong>Partido: </strong>{deputado.ultimoStatus.siglaPartido}</p></ListGroup.Item>
-                            <ListGroup.Item><Link className='btn btn-outline-dark' to={-1}>Voltar</Link></ListGroup.Item>
-                        </ListGroup>
-                        </Card.Body>
-                           
-                    </Card>
-                    </Col>
-                </Row>
-            </div>
-        }
-    </div>
-  )
+            {deputado.id &&
+                <div>
+
+                    <Row>
+                        <Col md={3}>
+                            <Card>
+                                <Card.Body>
+                                    <Card.Img variant="top" src={deputado.ultimoStatus.urlFoto} />
+                                </Card.Body>
+
+                            </Card>
+                        </Col>
+                        <Col md={9}>
+                            <Card>
+                                <Card.Body>
+                                <Row className='mb-3'>
+                                    <Tabs defaultActiveKey="perfil" id="uncontrolled-tab-example" className="mb-3">
+                                        <Tab eventKey="perfil" title="Perfil">
+                                            <span><strong>Nome Completo: </strong>{deputado.nomeCivil}</span><br/>
+                                            <span><strong>Data de Nascimento: </strong>{getDateBR(deputado.dataNascimento)}</span><br/>
+                                            <span><strong>Local de Nascimento: </strong>{deputado.ufNascimento}</span><br/>
+                                            <span><strong>Escolaridade: </strong>{deputado.escolaridade}</span><br/>
+                                            <span><strong>Condição Eleitoral: </strong>{deputado.ultimoStatus.condicaoEleitoral}</span><br/>
+                                            <span><strong>Email: </strong>{deputado.ultimoStatus.email}</span><br/>
+                                            <span><strong>Partido: </strong>{deputado.ultimoStatus.siglaPartido}</span><br/>
+                                        </Tab>
+                                        <Tab eventKey="despesas" title="Despesas">
+                                        </Tab>
+                                        <Tab eventKey="ocupacoes" title="Ocupações">
+                                        </Tab>
+                                    </Tabs>
+                                </Row>
+                                <Link className='btn btn-outline-dark' to={-1}>Voltar</Link>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                    </Row>
+                </div>
+            }
+        </div>
+    )
 }
 
 export default DeputadosDetalhes

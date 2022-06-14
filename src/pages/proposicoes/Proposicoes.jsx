@@ -1,7 +1,9 @@
+
 import React, { useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap'
+
+import { BsInfoSquareFill } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
-import { FiSearch } from 'react-icons/fi'
 import apiDeputados from '../../services/apiDeputados'
 
 const Proposicoes = () => {
@@ -31,7 +33,7 @@ const Proposicoes = () => {
                 <tbody>
                     {proposicoes.map(item => (
                         <tr key={item.id}>
-                            <td><Link to={'/proposicoes/' + item.id}><FiSearch /></Link></td>
+                            <td><Link className='btn btn-outline-dark' to={'/proposicoes/' + item.id}><BsInfoSquareFill /> Info</Link></td>
                             <td>{item.siglaTipo}</td>
                             <td>{item.ano}</td>
                             <td>{item.ementa}</td>

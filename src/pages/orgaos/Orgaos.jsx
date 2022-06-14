@@ -7,9 +7,9 @@ const Orgaos = () => {
 
   const [orgaos, setOrgaos] = useState([])
   useEffect(() => {
-      apiDeputados.get('orgaos?itens=50').then(resultado => {
-          setOrgaos(resultado.data.dados)
-      })
+    apiDeputados.get('orgaos?itens=50').then(resultado => {
+      setOrgaos(resultado.data.dados)
+    })
   }, [])
 
   console.log(orgaos);
@@ -25,17 +25,17 @@ const Orgaos = () => {
             <th>Apelido</th>
             <th>Tipo de Órgão</th>
           </tr>
-          </thead>
-          <tbody>
-              {orgaos.map(item => (
-                  <tr key={item.id}>
-                      <td>{item.sigla}</td>
-                      <td>{item.nome}</td>
-                      <td>{item.apelido}</td>
-                      <td>{item.tipoOrgao}</td>
-                  </tr>
-              ))}
-          </tbody>
+        </thead>
+        <tbody>
+          {orgaos.map(item => (
+            <tr key={item.id}>
+              <td>{item.sigla}</td>
+              <td>{item.nome}</td>
+              <td>{item.apelido}</td>
+              <td>{item.tipoOrgao}</td>
+            </tr>
+          ))}
+        </tbody>
       </Table>
     </div>
   )

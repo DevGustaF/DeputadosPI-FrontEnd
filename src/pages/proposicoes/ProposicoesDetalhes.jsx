@@ -32,7 +32,7 @@ const ProposicoesDetalhes = () => {
                                         <ListGroup.Item><p><strong>Tipo da Proposição: </strong>{proposicao.descricaoTipo}</p></ListGroup.Item>
                                         <ListGroup.Item><p><strong>Número da Proposição: </strong>{proposicao.numero}</p></ListGroup.Item>
                                         <ListGroup.Item><p><strong>Ano da Proposição: </strong>{proposicao.ano}</p></ListGroup.Item>
-                                        <ListGroup.Item><p><strong>Órgão Responsável: </strong>{proposicao.statusProposicao.siglaOrgao}</p></ListGroup.Item>
+                                        <ListGroup.Item><p><strong>Órgão Onde Ocorreu: </strong>{proposicao.statusProposicao.siglaOrgao}</p></ListGroup.Item>
                                         <ListGroup.Item><p><strong>Situação da Proposição: </strong>{proposicao.statusProposicao.descricaoTramitacao}</p></ListGroup.Item>
                                         <ListGroup.Item><p><strong>Ementa Detalhada: </strong>{proposicao.ementaDetalhada}</p></ListGroup.Item>
                                         <ListGroup.Item><Link className='btn btn-outline-dark' to={-1}>Voltar</Link></ListGroup.Item>
